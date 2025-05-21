@@ -1,0 +1,68 @@
+.invert{
+    backdrop-filter: invert(1);
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.border{
+    border: 2px solid red;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.song-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+.song-container::-webkit-scrollbar-track {
+    background: var(--col_3);
+    border-radius: 10px;
+    }
+  
+.song-container::-webkit-scrollbar-thumb {
+    background-color: var(--col_1);
+    border-radius: 10px;
+  }
+.playlist-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+.playlist-container::-webkit-scrollbar-track {
+    background: var(--col_3);
+    border-radius: 10px;
+  }
+  
+.playlist-container::-webkit-scrollbar-thumb {
+    background-color: var(--col_1);
+    border-radius: 10px;
+  }

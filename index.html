@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <meta name="author" content="Bhalu">
+    <meta name="Description"
+        content="Spotify is a digital music service that gives you access to millions of songs.">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/utils.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
+</head>
+<body class="open-sans-uniquifier">
+    <div class="header">
+        <nav class="flex">
+            <img src="Images/logo.svg" alt="Spotify-logo" class="logo pointer" height="33">
+            <div class="circle container pointer">
+                <img src="Images/home.svg" alt="Home" height="26">
+            </div>
+            <div class="search flex align-center">
+                <img src="Images/search.svg" alt="Search" height="28" class="pointer">
+                <p>What do you want to play?</p>
+                <div class="seperator"></div>
+                <img src="Images/browse.svg" alt="Browse" height="28" class="pointer">
+            </div>
+            <ul class="left-ul container">
+                <li><a href="#" class="pointer">Premium</a></li>
+                <li><a href="#" class="pointer">Support</a></li>
+                <li><a href="#" class="pointer">Download</a></li>
+                <div class="seperator"></div>
+            </ul>
+            <ul class="right-ul container">
+                <li>
+                    <div class="install container">
+                        <img src="Images/install.svg" alt="Install" height="16" class="pointer">
+                        <a href="#" class="dummy pointer">Install-App</a>
+                    </div>
+                </li>
+                <li><a href="#" class="dummy pointer">Sign-Up</a></li>
+                <li><a href="#" class="log-in container pointer">Log in</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main flex">
+        <div class="left flex flex-col">
+            <div class="left-header flex align-center">
+                <h2>Your Library</h2>
+                <img src="Images/add.svg" alt="Add" height="18" class="add pointer">
+            </div>
+            <div class="left-main">
+                <div class="song-container flex flex-col ">
+                    <div class="song flex">
+                        <img src="Images/music.svg" alt="Music" height="24" class="music">
+                        <div class="song-details">
+                            <p>Song Name</p>
+                            <p>Song Artist</p>
+                        </div>
+                        <div class="song-play flex align-center justify-center">
+                            <p>Play Now</p>
+                            <img src="Images/play.svg" alt="Play" height="24" class="pointer"> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-footer flex flex-col">
+                <ul class="flex">
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Safety & Privacy Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+                <ul class="flex">
+                    <li><a href="#">About Ads</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+                <ul class="flex">
+                    <li><a href="#" class="cookies">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right flex flex-col align-center justify-center">
+            <h1 class="open-sans-uniquifier">Your playlists</h1>
+            <div class="playlist-container flex  ">
+                <div class="playlist flex flex-col align-center justify-center">
+                    <img src="Images/INOHA.png" alt="Playlist" height="170" width="170">
+                    <h3>Name</h1>
+                    <p>Lorem ipsum dolor sit.</p>
+                    <div class="btn-play">
+                        <img src="Images/green-play-btn.svg" alt="Play" height="50">
+                    </div>
+                </div>
+            </div>       
+        </div>
+
+        <div class="playbar flex align-center">
+            <div class="playbar-song flex justify-center align-center">
+                <img src="Images/INOHA.png" alt="Image" height="50">
+                <div class="playbar-song-details flex flex-col align-center">
+                    <p>Song Name</p>
+                    <p>Song Artist</p>
+                </div>
+            </div>
+            <div class="controls flex justify-center align-center">
+                <img src="Images/previous.svg" alt="Previous" height="70">
+                <img src="Images/playbar-play.svg" alt="Play" height="35">
+                <!-- <img src="Images/pause.svg" alt="Pause"> -->
+                <img src="Images/next.svg" alt="Next" height="70">
+            </div>
+            <div class="volume flex justify-center align-center">
+                <img src="Images/sound.svg" alt="Volume" height="28">
+                <!-- <img src="Images/mute.svg" alt="Mute"> -->
+                <input type="range" name="" id="">
+            </div>
+            <div class="song-control flex justify-center align-center">
+                <div class="start-time time">0:00</div>
+                <div class="circle"></div>
+                <div class="seekbar"></div>
+                <div class="end-time time">5:00</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
