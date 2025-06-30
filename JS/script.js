@@ -1,5 +1,4 @@
 //Fetching Albums from the songs folder and rendering it in the UI using an async function.
-
 const displayAlbums = async () => {
   let playlistContainer =
     document.getElementsByClassName("playlist-container")[0];
