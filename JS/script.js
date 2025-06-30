@@ -23,6 +23,8 @@ const displayAlbums = async () => {
 </div>`;
   }
 
+  // firstSong()
+
   handleAlbumClick();
 };
 
@@ -62,7 +64,7 @@ const displaySongs = async (folderName) => {
       .replace(".mp3", "");
     songContainer.innerHTML =
       songContainer.innerHTML +
-      `                    <div class="song flex">
+      `                    <div class="song flex" data-song="${a[i]}">
                         <img src="Images/music.svg" alt="Music" height="24" class="music">
                         <div class="song-details">
                             <p>${songName}</p>
@@ -73,7 +75,27 @@ const displaySongs = async (folderName) => {
                             <img src="Images/play.svg" alt="Play" height="24" class="pointer"> 
                         </div>
                     </div>`;
+    playSong();
   }
 };
 
 displaySongs();
+
+const playSong = () => {
+  let songs = document.querySelectorAll(".song");
+  let audio = new Audio();
+  songs.forEach((item) => {
+    item.addEventListener("click", () => {
+      const song = item.dataset.song;
+      audio.pause();
+      audio.src = song;
+      audio.play();
+    });
+  });
+};
+
+const firstSong = (albumName) =>{
+  let audio = new Audio()
+  audio.pause()
+  audio.src = `/Songs/${albumName}/${a[5]}`
+}
