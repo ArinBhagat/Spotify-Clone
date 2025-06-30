@@ -9,12 +9,14 @@ const displayAlbums = async () => {
   let a = storeData.getElementsByTagName("a");
   for (let i = 3; i < a.length; i++) {
     let albumName = a[i].href.replace("http://127.0.0.1:5500/songs/", "");
+    let info = await fetch(`Songs/${albumName}/details/info.json`);
+    let infoResponse = await info.json();
     playlistContainer.innerHTML =
       playlistContainer.innerHTML +
-      `<div class="playlist flex flex-col align-center justify-center" data-folder=${albumName}>
-    <img src="Images/INOHA.png" alt="Playlist" height="170" width="170">
-    <h3>${albumName}</h3>
-    <p>Lorem ipsum dolor sit.</p>
+      `<div class="playlist flex flex-col align-center justify-center" data-folder=${infoResponse.title}>
+    <img src="/Songs/${albumName}/details/cover_page.jpeg" alt="Playlist" height="170" width="170" onerror='this.onerror=null; this.src="/Songs/${albumName}/details/cover_page.jpg"'>
+    <h3>${infoResponse.title}</h3>
+    <p>${infoResponse.desc}</p>
     <div class="btn-play">
         <img src="Images/green-play-btn.svg" alt="Play" height="50">
     </div>
@@ -45,10 +47,19 @@ const displaySongs = async (folderName) => {
   let storeData = document.createElement("div");
   storeData.innerHTML = html;
   let a = storeData.getElementsByTagName("a");
-  console.log(a)
-  for (let i = 5; i< a.length; i++) {
-    let songName = a[i].href.replace(`http://127.0.0.1:5500/Songs/${folderName}/`, "").replaceAll("_"," ").split("-")[0];
-    let songArtist = a[i].href.replace(`http://127.0.0.1:5500/Songs/${folderName}/`, "").replaceAll("_"," ").split("-")[1].replace(".mp3","")
+  songContainer.innerHTML = "";
+  for (let i = 5; i < a.length; i++) {
+    let songName = a[i].href
+      .replace(`http://127.0.0.1:5500/Songs/${folderName}/`, "")
+      .replaceAll("_", " ")
+      .replaceAll("%", " ")
+      .split("-")[0];
+    let songArtist = a[i].href
+      .replace(`http://127.0.0.1:5500/Songs/${folderName}/`, "")
+      .replaceAll("_", " ")
+      .replaceAll("%", " ")
+      .split("-")[1]
+      .replace(".mp3", "");
     songContainer.innerHTML =
       songContainer.innerHTML +
       `                    <div class="song flex">
