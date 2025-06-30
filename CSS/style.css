@@ -224,7 +224,7 @@ body{
 }
 
 .right h1{
-    margin: 0 25px;
+    margin: 20px 25px;
     align-self: flex-start;
 }
 
@@ -233,6 +233,7 @@ body{
     width: 95%;
     overflow-y: auto;
     flex-wrap: wrap;
+    margin-bottom: 120px;
 }
 
 .playlist{
