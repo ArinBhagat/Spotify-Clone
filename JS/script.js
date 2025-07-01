@@ -23,7 +23,7 @@ const displayAlbums = async () => {
 </div>`;
   }
 
-  displaySongs(a[3].href.replace("http://127.0.0.1:5500/songs/",""))
+  displaySongs(a[3].href.replace("http://127.0.0.1:5500/songs/", ""));
 
   handleAlbumClick();
 };
@@ -81,15 +81,24 @@ const displaySongs = async (folderName) => {
 
 displaySongs();
 
+//Added the playSong function which plays or pauses a song and changes the imgs accordingly.
 const playSong = () => {
   let songs = document.querySelectorAll(".song");
   let audio = new Audio();
   songs.forEach((item) => {
     item.addEventListener("click", () => {
       const song = item.dataset.song;
-      audio.pause();
+      let audioPlayBtn = item
+        .getElementsByClassName("song-play")[0]
+        .getElementsByTagName("img")[0];
       audio.src = song;
-      audio.play();
+      if (audioPlayBtn.src.includes("pause.svg")) {
+        audioPlayBtn.src = "Images/play.svg";
+        audio.pause()
+      } else {
+        audioPlayBtn.src = "Images/pause.svg";
+        audio.play()
+      }
     });
   });
 };
