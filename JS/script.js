@@ -23,7 +23,7 @@ const displayAlbums = async () => {
 </div>`;
   }
 
-  // firstSong()
+  displaySongs(a[3].href.replace("http://127.0.0.1:5500/songs/",""))
 
   handleAlbumClick();
 };
@@ -93,9 +93,3 @@ const playSong = () => {
     });
   });
 };
-
-const firstSong = (albumName) =>{
-  let audio = new Audio()
-  audio.pause()
-  audio.src = `/Songs/${albumName}/${a[5]}`
-}
