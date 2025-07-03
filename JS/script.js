@@ -85,8 +85,10 @@ displaySongs();
 const playSong = () => {
   let songs = document.querySelectorAll(".song");
   let audio = new Audio();
+  let playbarSongDetails = document.getElementsByClassName("playbar-song-details")[0].getElementsByTagName("p")
   songs.forEach((item) => {
     item.addEventListener("click", () => {
+      let songDetails = item.getElementsByClassName("song-details")[0].getElementsByTagName("p")
       const song = item.dataset.song;
       let audioPlayBtn = item
         .getElementsByClassName("song-play")[0]
@@ -99,6 +101,8 @@ const playSong = () => {
         audioPlayBtn.src = "Images/pause.svg";
         audio.play()
       }
+      playbarSongDetails[0].innerHTML = songDetails[0].innerHTML
+      playbarSongDetails[1].innerHTML = songDetails[1].innerHTML
     });
   });
 };
