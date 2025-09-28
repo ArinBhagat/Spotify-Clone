@@ -85,24 +85,36 @@ displaySongs();
 const playSong = () => {
   let songs = document.querySelectorAll(".song");
   let audio = new Audio();
-  let playbarSongDetails = document.getElementsByClassName("playbar-song-details")[0].getElementsByTagName("p")
+  let playbarSongDetails = document
+    .getElementsByClassName("playbar-song-details")[0]
+    .getElementsByTagName("p");
   songs.forEach((item) => {
     item.addEventListener("click", () => {
-      let songDetails = item.getElementsByClassName("song-details")[0].getElementsByTagName("p")
+      let songDetails = item
+        .getElementsByClassName("song-details")[0]
+        .getElementsByTagName("p");
       const song = item.dataset.song;
       let audioPlayBtn = item
         .getElementsByClassName("song-play")[0]
         .getElementsByTagName("img")[0];
-      audio.src = song;
-      if (audioPlayBtn.src.includes("pause.svg")) {
-        audioPlayBtn.src = "Images/play.svg";
-        audio.pause()
-      } else {
+      document.querySelectorAll(".song-play img").forEach((btn) => {
+        btn.src = "Images/play.svg";
+      });
+      if (audio.src !== song) {
+        audio.src = song;
         audioPlayBtn.src = "Images/pause.svg";
-        audio.play()
+        audio.play();
+      } else {
+        if (!audio.paused) {
+          audio.pause();
+          audioPlayBtn.src = "Images/play.svg";
+        } else {
+          audio.play();
+          audioPlayBtn.src = "Images/pause.svg";
+        }
       }
-      playbarSongDetails[0].innerHTML = songDetails[0].innerHTML
-      playbarSongDetails[1].innerHTML = songDetails[1].innerHTML
+      playbarSongDetails[0].innerHTML = songDetails[0].innerHTML;
+      playbarSongDetails[1].innerHTML = songDetails[1].innerHTML;
     });
   });
 };
