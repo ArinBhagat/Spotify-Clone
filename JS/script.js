@@ -105,16 +105,16 @@ const playSong = () => {
         audio.src = song;
         audioPlayBtn.src = "Images/pause.svg";
         audio.play();
-        curr.src = "Images/pause.svg"
+        curr.src = "Images/pause.svg";
       } else {
         if (!audio.paused) {
           audio.pause();
           audioPlayBtn.src = "Images/play.svg";
-          curr.src = "Images/playbar-play.svg"
+          curr.src = "Images/playbar-play.svg";
         } else {
           audio.play();
           audioPlayBtn.src = "Images/pause.svg";
-          curr.src = "Images/pause.svg"
+          curr.src = "Images/pause.svg";
         }
       }
       playbarSongDetails[0].innerHTML = songDetails[0].innerHTML;
@@ -161,7 +161,7 @@ const volumeSet = (song) => {
 
 const setTime = (audio) => {
   const seekbar = document.getElementsByClassName("seekbar")[0];
-  const circle = document.getElementsByClassName("circle")[0];
+  const circle = document.getElementsByClassName("circle")[1];
   let endTime = document.getElementsByClassName("end-time")[0];
   let startTime = document.getElementsByClassName("start-time")[0];
   let songTime = 0;
@@ -173,7 +173,15 @@ const setTime = (audio) => {
   setInterval(() => {
     currentSongTime = audio.currentTime;
     startTime.innerHTML = conversion(currentSongTime);
+    circle.style.left = `${(currentSongTime / songTime) * 900 + 30}px`;
   }, 1000);
+  seekbar.onclick = (e) => {
+    const rect = seekbar.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const width = rect.width;
+    circle.style.left = offsetX;
+    audio.currentTime = (offsetX / width) * songTime;
+  };
 };
 
 // Converts seconds into minutes and seconds
@@ -187,7 +195,7 @@ const songControls = (songs, song, audio, audioPlayBtn) => {
   const prev = document.getElementById("prev");
   const curr = document.getElementById("curr");
   const next = document.getElementById("next");
-  let currAudioIndex = 0
+  let currAudioIndex = 0;
   prev.onclick = () => {
     if (songs[0].dataset.song == song) {
       audio.currentTime = 0;

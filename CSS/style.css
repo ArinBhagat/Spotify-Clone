@@ -312,7 +312,7 @@ body{
 
 .seekbar{
     height: 5px;
-    width: 60vw;
+    width: 900px;
     background-color: white;
     border-radius: 12px;
     cursor: pointer;
@@ -323,6 +323,6 @@ body{
     width: 12px;
     background-color: white;
     position: absolute;
-    left: 70%;
+    left: 30px;
     cursor: pointer;
 }
