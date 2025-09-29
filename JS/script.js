@@ -88,6 +88,7 @@ const playSong = () => {
   let playbarSongDetails = document
     .getElementsByClassName("playbar-song-details")[0]
     .getElementsByTagName("p");
+  const curr = document.getElementById("curr");
   songs.forEach((item) => {
     item.addEventListener("click", () => {
       let songDetails = item
@@ -104,17 +105,108 @@ const playSong = () => {
         audio.src = song;
         audioPlayBtn.src = "Images/pause.svg";
         audio.play();
+        curr.src = "Images/pause.svg"
       } else {
         if (!audio.paused) {
           audio.pause();
           audioPlayBtn.src = "Images/play.svg";
+          curr.src = "Images/playbar-play.svg"
         } else {
           audio.play();
           audioPlayBtn.src = "Images/pause.svg";
+          curr.src = "Images/pause.svg"
         }
       }
       playbarSongDetails[0].innerHTML = songDetails[0].innerHTML;
       playbarSongDetails[1].innerHTML = songDetails[1].innerHTML;
+      volumeSet(audio);
+      setTime(audio);
+      songControls(songs, song, audio, audioPlayBtn);
     });
   });
+};
+
+// This function sets the volume of the audio
+const volumeSet = (song) => {
+  const sound = document.getElementById("sound");
+  const soundBtn = document
+    .getElementsByClassName("volume")[0]
+    .getElementsByTagName("img")[0];
+  val = sound.value / 100;
+  sound.onclick = () => {
+    val = sound.value / 100;
+    song.volume = val;
+    if (val == 0) {
+      soundBtn.src = "Images/mute.svg";
+    } else {
+      soundBtn.src = "Images/sound.svg";
+    }
+  };
+  soundBtn.onclick = () => {
+    if (
+      soundBtn.src.replace("http://127.0.0.1:5500/", "") === "Images/mute.svg"
+    ) {
+      if (val == 0) {
+        val = 0.5;
+        sound.value = 50;
+      }
+      song.volume = val;
+      soundBtn.src = "Images/sound.svg";
+    } else {
+      song.volume = 0;
+      soundBtn.src = "Images/mute.svg";
+    }
+  };
+};
+
+const setTime = (audio) => {
+  const seekbar = document.getElementsByClassName("seekbar")[0];
+  const circle = document.getElementsByClassName("circle")[0];
+  let endTime = document.getElementsByClassName("end-time")[0];
+  let startTime = document.getElementsByClassName("start-time")[0];
+  let songTime = 0;
+  let currentSongTime = 0;
+  audio.addEventListener("loadedmetadata", () => {
+    songTime = audio.duration;
+    endTime.innerHTML = conversion(songTime);
+  });
+  setInterval(() => {
+    currentSongTime = audio.currentTime;
+    startTime.innerHTML = conversion(currentSongTime);
+  }, 1000);
+};
+
+// Converts seconds into minutes and seconds
+const conversion = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+};
+
+const songControls = (songs, song, audio, audioPlayBtn) => {
+  const prev = document.getElementById("prev");
+  const curr = document.getElementById("curr");
+  const next = document.getElementById("next");
+  let currAudioIndex = 0
+  prev.onclick = () => {
+    if (songs[0].dataset.song == song) {
+      audio.currentTime = 0;
+    }
+  };
+  next.onclick = () => {
+    if (songs[songs.length - 1].dataset.song == song) {
+      audio.currentTime = 0;
+    }
+  };
+  curr.onclick = () => {
+    if (!audio.paused) {
+      audio.pause();
+      curr.src = "Images/playbar-play.svg";
+      audioPlayBtn.src = "Images/play.svg";
+    } else {
+      audio.play();
+      curr.src = "Images/pause.svg";
+      audioPlayBtn.src = "Images/pause.svg";
+    }
+  };
 };
