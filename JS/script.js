@@ -127,7 +127,7 @@ const playSong = (prop) => {
       playbarSongDetails[1].innerHTML = songDetails[1].innerHTML;
       volumeSet(audio);
       setTime(audio);
-      songControls(songs, song, audio, audioPlayBtn);
+      songControls(songs, song, audio,audioPlayBtn, playbarSongDetails);
     });
   });
 };
@@ -197,12 +197,13 @@ const conversion = (time) => {
   return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
 };
 
-const songControls = (songs, song, audio, audioPlayBtn) => {
+const songControls = (songs, song, audio,audioPlayBtn, playbarSongDetails) => {
   const prev = document.getElementById("prev");
   const curr = document.getElementById("curr");
   const next = document.getElementById("next");
   let songArray = Array.from(songs).map((s) => s.dataset.song);
   let res = 0;
+
   prev.onclick = () => {
     if (songs[0].dataset.song == song) {
       audio.currentTime = 0;
@@ -214,8 +215,16 @@ const songControls = (songs, song, audio, audioPlayBtn) => {
       song = songs[res - 1].dataset.song;
       audio.src = songs[res - 1].dataset.song;
       audio.play();
-      audioPlayBtn.src = "Images/pause.svg";
       curr.src = "Images/pause.svg";
+      songs[res - 1]
+        .getElementsByClassName("song-play")[0]
+        .getElementsByTagName("img")[0].src = "Images/pause.svg";
+      playbarSongDetails[0].innerHTML = songs[res - 1]
+        .getElementsByClassName("song-details")[0]
+        .getElementsByTagName("p")[0].innerHTML;
+      playbarSongDetails[1].innerHTML = songs[res - 1]
+        .getElementsByClassName("song-details")[0]
+        .getElementsByTagName("p")[1].innerHTML;
     }
   };
   next.onclick = () => {
@@ -229,8 +238,16 @@ const songControls = (songs, song, audio, audioPlayBtn) => {
       song = songs[res + 1].dataset.song;
       audio.src = songs[res + 1].dataset.song;
       audio.play();
-      audioPlayBtn.src = "Images/pause.svg";
       curr.src = "Images/pause.svg";
+      songs[res + 1]
+        .getElementsByClassName("song-play")[0]
+        .getElementsByTagName("img")[0].src = "Images/pause.svg";
+      playbarSongDetails[0].innerHTML = songs[res + 1]
+        .getElementsByClassName("song-details")[0]
+        .getElementsByTagName("p")[0].innerHTML;
+      playbarSongDetails[1].innerHTML = songs[res + 1]
+        .getElementsByClassName("song-details")[0]
+        .getElementsByTagName("p")[1].innerHTML;
     }
   };
   curr.onclick = () => {
