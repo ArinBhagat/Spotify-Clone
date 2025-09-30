@@ -216,7 +216,6 @@ const songControls = (songs, song, audio, audioPlayBtn) => {
       audio.play();
       audioPlayBtn.src = "Images/pause.svg";
       curr.src = "Images/pause.svg";
-      console.log(song);
     }
   };
   next.onclick = () => {
@@ -232,7 +231,6 @@ const songControls = (songs, song, audio, audioPlayBtn) => {
       audio.play();
       audioPlayBtn.src = "Images/pause.svg";
       curr.src = "Images/pause.svg";
-      console.log(song);
     }
   };
   curr.onclick = () => {
