@@ -82,7 +82,7 @@ const displaySongs = async (folderName) => {
 displaySongs();
 
 //Added the playSong function which plays or pauses a song and changes the imgs accordingly.
-const playSong = () => {
+const playSong = (prop) => {
   let songs = document.querySelectorAll(".song");
   let audio = new Audio();
   let playbarSongDetails = document
@@ -116,6 +116,12 @@ const playSong = () => {
           audioPlayBtn.src = "Images/pause.svg";
           curr.src = "Images/pause.svg";
         }
+      }
+      if (prop != undefined) {
+        audio.src = prop;
+        audio.play();
+        audioPlayBtn.src = "Images/pause.svg";
+        curr.src = "Images/pause.svg";
       }
       playbarSongDetails[0].innerHTML = songDetails[0].innerHTML;
       playbarSongDetails[1].innerHTML = songDetails[1].innerHTML;
@@ -195,15 +201,38 @@ const songControls = (songs, song, audio, audioPlayBtn) => {
   const prev = document.getElementById("prev");
   const curr = document.getElementById("curr");
   const next = document.getElementById("next");
-  let currAudioIndex = 0;
+  let songArray = Array.from(songs).map((s) => s.dataset.song);
+  let res = 0;
   prev.onclick = () => {
     if (songs[0].dataset.song == song) {
       audio.currentTime = 0;
+    } else {
+      document.querySelectorAll(".song-play img").forEach((btn) => {
+        btn.src = "Images/play.svg";
+      });
+      res = songArray.indexOf(song);
+      song = songs[res - 1].dataset.song;
+      audio.src = songs[res - 1].dataset.song;
+      audio.play();
+      audioPlayBtn.src = "Images/pause.svg";
+      curr.src = "Images/pause.svg";
+      console.log(song);
     }
   };
   next.onclick = () => {
     if (songs[songs.length - 1].dataset.song == song) {
       audio.currentTime = 0;
+    } else {
+      document.querySelectorAll(".song-play img").forEach((btn) => {
+        btn.src = "Images/play.svg";
+      });
+      res = songArray.indexOf(song);
+      song = songs[res + 1].dataset.song;
+      audio.src = songs[res + 1].dataset.song;
+      audio.play();
+      audioPlayBtn.src = "Images/pause.svg";
+      curr.src = "Images/pause.svg";
+      console.log(song);
     }
   };
   curr.onclick = () => {
