@@ -117,12 +117,6 @@ const playSong = (prop) => {
           curr.src = "Images/pause.svg";
         }
       }
-      if (prop != undefined) {
-        audio.src = prop;
-        audio.play();
-        audioPlayBtn.src = "Images/pause.svg";
-        curr.src = "Images/pause.svg";
-      }
       playbarSongDetails[0].innerHTML = songDetails[0].innerHTML;
       playbarSongDetails[1].innerHTML = songDetails[1].innerHTML;
       volumeSet(audio);
