@@ -82,7 +82,7 @@ const displaySongs = async (folderName) => {
 displaySongs();
 
 //Added the playSong function which plays or pauses a song and changes the imgs accordingly.
-const playSong = (prop) => {
+const playSong = () => {
   let songs = document.querySelectorAll(".song");
   let audio = new Audio();
   let playbarSongDetails = document
@@ -121,7 +121,7 @@ const playSong = (prop) => {
       playbarSongDetails[1].innerHTML = songDetails[1].innerHTML;
       volumeSet(audio);
       setTime(audio);
-      songControls(songs, song, audio,audioPlayBtn, playbarSongDetails);
+      songControls(songs, song, audio, audioPlayBtn, playbarSongDetails);
     });
   });
 };
@@ -191,7 +191,7 @@ const conversion = (time) => {
   return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
 };
 
-const songControls = (songs, song, audio,audioPlayBtn, playbarSongDetails) => {
+const songControls = (songs, song, audio, audioPlayBtn, playbarSongDetails) => {
   const prev = document.getElementById("prev");
   const curr = document.getElementById("curr");
   const next = document.getElementById("next");
