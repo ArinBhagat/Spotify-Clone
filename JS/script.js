@@ -1,4 +1,6 @@
 //Fetching Albums from the songs folder and rendering it in the UI using an async function.
+let audio = new Audio();
+
 const displayAlbums = async () => {
   let playlistContainer =
     document.getElementsByClassName("playlist-container")[0];
@@ -37,6 +39,7 @@ const handleAlbumClick = () => {
     playlist.addEventListener("click", async () => {
       const folder = playlist.dataset.folder;
       await displaySongs(folder);
+      playFirstSong();
     });
   });
 };
@@ -84,7 +87,6 @@ displaySongs();
 //Added the playSong function which plays or pauses a song and changes the imgs accordingly.
 const playSong = () => {
   let songs = document.querySelectorAll(".song");
-  let audio = new Audio();
   let playbarSongDetails = document
     .getElementsByClassName("playbar-song-details")[0]
     .getElementsByTagName("p");
@@ -255,4 +257,11 @@ const songControls = (songs, song, audio, audioPlayBtn, playbarSongDetails) => {
       audioPlayBtn.src = "Images/pause.svg";
     }
   };
+};
+
+const playFirstSong = () => {
+  let song = document.querySelectorAll(".song")[0].dataset.song;
+  audio.src = song;
+  audio.play();
+  document.querySelectorAll(".song")[0].getElementsByClassName("song-play")[0].getElementsByTagName("img")[0].src = "Images/pause.svg"
 };
