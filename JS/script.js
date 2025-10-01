@@ -258,10 +258,3 @@ const songControls = (songs, song, audio, audioPlayBtn, playbarSongDetails) => {
     }
   };
 };
-
-const playFirstSong = () => {
-  let song = document.querySelectorAll(".song")[0].dataset.song;
-  audio.src = song;
-  audio.play();
-  document.querySelectorAll(".song")[0].getElementsByClassName("song-play")[0].getElementsByTagName("img")[0].src = "Images/pause.svg"
-};
