@@ -1,3 +1,3 @@
 # Hey,Welcome to my Spotify clone!
 ## Author - Arin Bhagat
-The functionality and responsiveness are yet to be made.
+The responsiveness is yet to be made.
