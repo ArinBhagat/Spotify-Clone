@@ -10,7 +10,7 @@ const displayAlbums = async () => {
   storeData.innerHTML = response;
   let a = storeData.getElementsByTagName("a");
   for (let i = 3; i < a.length; i++) {
-    let albumName = a[i].href.replace("http://127.0.0.1:5500/songs/", "");
+    let albumName = a[i].href.replace("/songs/", "");
     let info = await fetch(`Songs/${albumName}/details/info.json`);
     let infoResponse = await info.json();
     playlistContainer.innerHTML =
@@ -25,7 +25,7 @@ const displayAlbums = async () => {
 </div>`;
   }
 
-  displaySongs(a[3].href.replace("http://127.0.0.1:5500/songs/", ""));
+  displaySongs(a[3].href.replace("/songs/", ""));
 
   handleAlbumClick();
 };
@@ -55,12 +55,12 @@ const displaySongs = async (folderName) => {
   songContainer.innerHTML = "";
   for (let i = 5; i < a.length; i++) {
     let songName = a[i].href
-      .replace(`http://127.0.0.1:5500/Songs/${folderName}/`, "")
+      .replace(`/Songs/${folderName}/`, "")
       .replaceAll("_", " ")
       .replaceAll("%", " ")
       .split("-")[0];
     let songArtist = a[i].href
-      .replace(`http://127.0.0.1:5500/Songs/${folderName}/`, "")
+      .replace(`/Songs/${folderName}/`, "")
       .replaceAll("_", " ")
       .replaceAll("%", " ")
       .split("-")[1]
@@ -146,7 +146,7 @@ const volumeSet = (song) => {
   };
   soundBtn.onclick = () => {
     if (
-      soundBtn.src.replace("http://127.0.0.1:5500/", "") === "Images/mute.svg"
+      soundBtn.src.replace("/", "") === "Images/mute.svg"
     ) {
       if (val == 0) {
         val = 0.5;
